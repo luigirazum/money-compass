@@ -36,3 +36,6 @@
 
 # Ignore vscode local settings
 .vscode
+
+# Ignore node_modules
+node_modules
