@@ -2,11 +2,11 @@
 
 <div align="center">
 
-  <img src="https://ik.imagekit.io/dqd3uh1at/budget-app/design-guides/money_compass_logo.svg?updatedAt=1708951067125" alt="logo" width="150" height="auto" />
+  <img src="https://ik.imagekit.io/dqd3uh1at/budget-app/design-guides/app_icon_circled.svg?updatedAt=1708991848772" alt="logo" width="120" height="auto" />
   <br/>
 
 ### About
-**MoneyCompass** is a mobile _Budget Application_ where you can manage your budget. You have a list of **Payments** associated with a **Category**, so that you can see how much money you spent and on what. It allows you to register and log in to _keep_ the _data private_, introduce _**new categories**_ and _**new payments**_ and see the money spent on each category. Give it a try!
+**MoneyCompass** is a mobile _Budget Application_ where you can manage your budget. [See more...](#about-project)
 
 </div>
 
