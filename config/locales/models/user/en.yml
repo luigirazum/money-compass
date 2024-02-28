@@ -41,3 +41,7 @@ en:
             name:
               blank: "can't be blank or empty"
               taken: "'%{value}' already exists, please provide a different %{attribute}"
+            categories:
+              invalid: "has a not valid 'Category'"
+            payments:
+              invalid: "has a not valid 'Payment'"
