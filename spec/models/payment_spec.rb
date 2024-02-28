@@ -23,4 +23,44 @@ RSpec.describe Payment, type: :model do
       expect(attr_mod({ amount: 'amount' }, payment)).to_not be_valid
     end
   end
+
+  describe '* attributes', :attributes do
+    describe '.name validations' do
+      it '- must be provided' do
+        expect(attr_mod({ name: nil }, payment)).to_not be_valid
+        expect(attr_mod({ name: '' }, payment)).to_not be_valid
+        expect(attr_mod({ name: '  ' }, payment)).to_not be_valid
+      end
+
+      it '- must contain at least 5 characters' do
+        expect(attr_mod({ name: 'a' * 4 }, payment)).to_not be_valid
+        expect(attr_mod({ name: 'a' * 5 }, payment)).to be_valid
+      end
+
+      it '- must be 150 characters max' do
+        expect(attr_mod({ name: 'a' * 151 }, payment)).to_not be_valid
+        expect(attr_mod({ name: 'a' * 150 }, payment)).to be_valid
+      end
+    end
+
+    describe '.amount validations' do
+      it '- must be provided' do
+        expect(attr_mod({ amount: nil }, payment)).to_not be_valid
+        expect(attr_mod({ amount: '' }, payment)).to_not be_valid
+        expect(attr_mod({ amount: '  ' }, payment)).to_not be_valid
+      end
+
+      it '- must be a number' do
+        expect(attr_mod({ amount: 'icon' }, payment)).to_not be_valid
+        expect(attr_mod({ amount: true }, payment)).to_not be_valid
+        expect(attr_mod({ amount: 5 }, payment)).to be_valid
+      end
+
+      it '- must be greater than zero' do
+        expect(attr_mod({ amount: 0 }, payment)).to_not be_valid
+        expect(attr_mod({ amount: -1 }, payment)).to_not be_valid
+        expect(attr_mod({ amount: 5 }, payment)).to be_valid
+      end
+    end
+  end
 end
