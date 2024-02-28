@@ -19,7 +19,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_110511) do
     t.string "icon", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["name"], name: "unique_category_names", unique: true
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -27,6 +29,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_110511) do
     t.decimal "amount", default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_payments_on_author_id"
     t.index ["name"], name: "index_payments_on_name"
   end
 
@@ -37,4 +41,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_110511) do
     t.index ["name"], name: "unique_user_names", unique: true
   end
 
+  add_foreign_key "categories", "users"
+  add_foreign_key "payments", "users", column: "author_id"
 end
