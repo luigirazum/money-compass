@@ -45,3 +45,6 @@ en:
             icon:
               blank: "can't be blank or empty"
               invalid: "must be a valid link"
+            user:
+              blank: "must be provided"
+
