@@ -47,3 +47,5 @@ en:
               not_a_number: "must be a number"
             author:
               blank: "must be provided"
+            category:
+              inclusion: "must be owned by the same user(author)"
