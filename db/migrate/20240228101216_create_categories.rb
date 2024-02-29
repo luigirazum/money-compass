@@ -11,6 +11,6 @@ class CreateCategories < ActiveRecord::Migration[7.1]
     add_reference :categories, :user, null: false, index:true, foreign_key: true
 
     # make sure category names don't repeat
-    add_index :categories, :name, unique: true, name: 'unique_category_names'
+    add_index :categories, [:user_id, :name], unique: true, name: 'unique_category_names_by_user'
   end
 end
