@@ -7,5 +7,5 @@ class Payment < ApplicationRecord
   validates_length_of :name, within: 5..150
   validates_presence_of :amount
   validates_numericality_of :amount, greater_than: 0
-  validates_presence_of :author
+  validates_presence_of :author_id
 end
