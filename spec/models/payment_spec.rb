@@ -8,8 +8,10 @@ def attr_mod(mod, obj)
 end
 
 RSpec.describe Payment, type: :model do
+  let!(:icon_link) { 'https://ik.imagekit.io/dqd3uh1at/budget-app/design-guides/app_icon_circled.svg' }
   let!(:payment_author) { User.create!(name: 'user name') }
-  let!(:payment) { described_class.new(name: 'payment name', amount: 1.59, author: payment_author) }
+  let!(:author_category) { payment_author.categories.create!(name: 'author category', icon: icon_link) }
+  let!(:payment) { author_category.payments.new(name: 'payment name', amount: 1.59) }
 
   before { payment.save }
 
@@ -23,8 +25,13 @@ RSpec.describe Payment, type: :model do
       expect(attr_mod({ amount: '' }, payment)).to_not be_valid
       expect(attr_mod({ amount: 'amount' }, payment)).to_not be_valid
       payment.author = nil
-      expect(payment).to_not be_valid
+      expect { payment.validate }.to raise_error(NoMethodError)
       expect { payment.author = 'author' }.to raise_error(ActiveRecord::AssociationTypeMismatch)
+      expect { payment.category = 'category' }.to raise_error(ActiveRecord::AssociationTypeMismatch)
+      diff_author = User.create!(name: 'Diff Author')
+      diff_category = diff_author.categories.create!(name: 'Diff Category', icon: icon_link)
+      payment.category = diff_category
+      expect { payment.validate }.to raise_error(NoMethodError)
     end
   end
 
@@ -85,10 +92,47 @@ RSpec.describe Payment, type: :model do
         it "+ must have a valid 'Author'" do
           expect(payment.author).to_not be_nil
           payment.author = nil
-          expect(payment).to_not be_valid
+          expect { payment.validate }.to raise_error(NoMethodError)
           new_author = User.new(name: '')
           new_author.validate
           payment.author = new_author
+          payment.save
+          expect(payment).to_not be_valid
+        end
+      end
+    end
+
+    describe '.category' do
+      it "=> responds for has one 'category'" do
+        association = described_class.reflect_on_association(:category)
+        expect(association.macro).to eq(:has_one)
+        expect(payment.category).to_not be_nil
+      end
+
+      it "=> must be a 'Category' instance" do
+        expect(payment.category).to be_an_instance_of(Category)
+        expect { payment.category = 'category' }.to raise_error(ActiveRecord::AssociationTypeMismatch)
+      end
+
+      it "=> 'Category' owner must be the payment's 'Author'" do
+        diff_author = User.create(name: 'diff author')
+        diff_category = diff_author.categories.create(name: 'diff category', icon: icon_link)
+        payment.category = diff_category
+        payment.validate
+        expect(payment).to_not be_valid
+        payment.category = author_category
+        payment.validate
+        expect(payment).to be_valid
+      end
+
+      context "=> each 'Payment'" do
+        it "+ must have a valid 'Category'" do
+          expect(payment.category).to_not be_nil
+          payment.category = nil
+          expect(payment).to_not be_valid
+          new_category = payment_author.categories.new(name: '', icon: icon_link)
+          new_category.validate
+          payment.category = new_category
           payment.save
           expect(payment).to_not be_valid
         end
