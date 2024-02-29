@@ -37,7 +37,7 @@ RSpec.describe Category, type: :model do
         expect(attr_mod({ name: '  ' }, category)).to_not be_valid
       end
 
-      it '- should not exists (no duplicates)' do
+      it "- can't be repeated (no duplicates), for the same '.user'" do
         expect(category).to be_valid
         duplicated_category = described_class.new(name: 'category name', icon: icon_link, user: category_owner)
         expect(duplicated_category).to_not be_valid
@@ -99,6 +99,39 @@ RSpec.describe Category, type: :model do
           category.save
           expect(category).to_not be_valid
         end
+      end
+    end
+
+    describe '.payments' do
+      it "=> responds for has many 'payments'" do
+        association = described_class.reflect_on_association(:payments)
+        expect(association.macro).to eq(:has_many)
+        expect(category.payments).to_not be_nil
+      end
+
+      it "=> must have only 'Payment' instances" do
+        category.payments.new(name: 'user payment', amount: 1)
+        expect(category.payments.last).to be_an_instance_of(Payment)
+        expect { category.payments = 'user' }.to raise_error(NoMethodError)
+        expect { category.payments = ['user'] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
+      end
+
+      it "=> must have only valid 'Payment's" do
+        payment = category.payments.create(name: 'user payment', amount: 1)
+        expect(payment).to be_valid
+        expect(category).to be_valid
+        expect(category.payments.size).to eq(1)
+        expect(category.payments.include?(payment)).to be_truthy
+        expect(attr_mod({ name: '' }, payment)).to_not be_valid
+        expect(category).to_not be_valid
+        expect { category.payments = '' }.to raise_error(NoMethodError)
+        expect { category.payments = [5] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
+        expect { category.payments = %w[a b c] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
+        diff_user = User.create(name: 'another user')
+        diff_cat = diff_user.categories.new(name: 'another category', icon: icon_link)
+        payment.category = diff_cat
+        expect(payment).to_not be_valid
+        expect(category).to_not be_valid
       end
     end
   end
