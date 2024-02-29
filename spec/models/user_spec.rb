@@ -31,7 +31,7 @@ RSpec.describe User, type: :model do
         expect(attr_mod({ name: '  ' }, user)).to_not be_valid
       end
 
-      it '- no duplicates allowed' do
+      it "- can't be repeated (no duplicates)" do
         expect(user).to be_valid
         expect(duplicated_user).not_to be_valid
         expect(attr_mod({ name: 'new name' }, duplicated_user)).to be_valid
@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
   describe '* associations', :associations do
     describe '.categories' do
       context "+ for a 'User.new'" do
-        it "- contains no 'Categories'" do
+        it "- initially contains no 'Categories'" do
           expect(user.categories).to be_empty
           expect(user.categories).to eq([])
           expect(user.categories.size).to eq(0)
@@ -56,7 +56,7 @@ RSpec.describe User, type: :model do
           expect(user.categories).to be_empty
         end
 
-        it "=> has only valid 'Category' items" do
+        it "=> must have only valid 'Category's" do
           category = user.categories.new(name: 'user category', icon: icon_link)
           expect(category).to be_valid
           expect(user).to be_valid
@@ -73,7 +73,7 @@ RSpec.describe User, type: :model do
 
     describe '.payments' do
       context '+ User.new' do
-        it "- contains no 'Payments'" do
+        it "- initially contains no 'Payments'" do
           expect(user.payments).to be_empty
           expect(user.payments).to eq([])
           expect(user.payments.size).to eq(0)
@@ -87,8 +87,9 @@ RSpec.describe User, type: :model do
           expect(user.payments).to be_empty
         end
 
-        it "=> has only valid 'Payment' items" do
-          payment = user.payments.new(name: 'user payment', amount: 1)
+        it "=> must have only valid 'Payment's" do
+          user_category = user.categories.new(name: 'user category', icon: icon_link)
+          payment = user.payments.new(name: 'user payment', amount: 1, category: user_category)
           expect(payment).to be_valid
           expect(user).to be_valid
           expect(user.payments.size).to eq(1)
@@ -98,6 +99,11 @@ RSpec.describe User, type: :model do
           expect { user.payments = '' }.to raise_error(NoMethodError)
           expect { user.payments = [5] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
           expect { user.payments = %w[a b c] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
+          diff_user = User.create(name: 'another user')
+          diff_cat = diff_user.categories.new(name: 'another category', icon: icon_link)
+          payment = user.payments.new(name: 'user payment', amount: 1, category: diff_cat)
+          expect(payment).to_not be_valid
+          expect(user).to_not be_valid
         end
       end
     end
