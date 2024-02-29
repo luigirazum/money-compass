@@ -16,6 +16,8 @@ class Category < ApplicationRecord
   validates_presence_of :user_id
   validates_associated :payments
 
+  private
+
   def initialize_category(payment)
     payment.category = self
   end
