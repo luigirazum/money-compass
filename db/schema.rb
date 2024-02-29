@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_28_110511) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_29_084926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_110511) do
     t.bigint "user_id", null: false
     t.index ["user_id", "name"], name: "unique_category_names_by_user", unique: true
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "category_payments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "category_id", null: false
+    t.bigint "payment_id", null: false
+    t.index ["category_id", "payment_id"], name: "unique_payments_by_category", unique: true
+    t.index ["category_id"], name: "category_with_payments"
+    t.index ["payment_id"], name: "payment_with_category"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -42,5 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_110511) do
   end
 
   add_foreign_key "categories", "users"
+  add_foreign_key "category_payments", "categories"
+  add_foreign_key "category_payments", "payments"
   add_foreign_key "payments", "users", column: "author_id"
 end
