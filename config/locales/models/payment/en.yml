@@ -45,3 +45,5 @@ en:
               blank: "can't be blank or empty"
               greater_than: "must be greater than %{count}"
               not_a_number: "must be a number"
+            author:
+              blank: "must be provided"
