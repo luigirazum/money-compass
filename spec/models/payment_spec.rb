@@ -8,7 +8,8 @@ def attr_mod(mod, obj)
 end
 
 RSpec.describe Payment, type: :model do
-  let!(:payment) { described_class.new(name: 'payment name', amount: 1.59) }
+  let!(:payment_author) { User.create!(name: 'user name') }
+  let!(:payment) { described_class.new(name: 'payment name', amount: 1.59, author: payment_author) }
 
   before { payment.save }
 
@@ -21,6 +22,9 @@ RSpec.describe Payment, type: :model do
       expect(attr_mod({ amount: nil }, payment)).to_not be_valid
       expect(attr_mod({ amount: '' }, payment)).to_not be_valid
       expect(attr_mod({ amount: 'amount' }, payment)).to_not be_valid
+      payment.author = nil
+      expect(payment).to_not be_valid
+      expect { payment.author = 'author' }.to raise_error(ActiveRecord::AssociationTypeMismatch)
     end
   end
 
@@ -60,6 +64,34 @@ RSpec.describe Payment, type: :model do
         expect(attr_mod({ amount: 0 }, payment)).to_not be_valid
         expect(attr_mod({ amount: -1 }, payment)).to_not be_valid
         expect(attr_mod({ amount: 5 }, payment)).to be_valid
+      end
+    end
+  end
+
+  describe '* associations', :associations do
+    describe '.author' do
+      it "=> responds for belongs to 'author'" do
+        association = described_class.reflect_on_association(:author)
+        expect(association.macro).to eq(:belongs_to)
+        expect(payment.author).to_not be_nil
+      end
+
+      it "=> must be a 'User' instance" do
+        expect(payment.author).to be_an_instance_of(User)
+        expect { payment.author = 'author' }.to raise_error(ActiveRecord::AssociationTypeMismatch)
+      end
+
+      context "=> each 'Payment'" do
+        it "+ must have a valid 'Author'" do
+          expect(payment.author).to_not be_nil
+          payment.author = nil
+          expect(payment).to_not be_valid
+          new_author = User.new(name: '')
+          new_author.validate
+          payment.author = new_author
+          payment.save
+          expect(payment).to_not be_valid
+        end
       end
     end
   end
