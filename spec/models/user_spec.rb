@@ -9,8 +9,16 @@ end
 
 RSpec.describe User, type: :model do
   let!(:icon_link) { 'https://ik.imagekit.io/dqd3uh1at/budget-app/design-guides/app_icon_circled.svg' }
-  let!(:user) { described_class.new(name: 'user name') }
-  let!(:duplicated_user) { described_class.new(name: 'user name') }
+  let!(:user) do
+    described_class.new(
+      name: 'user name', email: 'email@me.com', password: 'pwd1234', confirmed_at: Time.now
+    )
+  end
+  let!(:duplicated_user) do
+    described_class.new(
+      name: 'user name', email: 'email@me.com', password: 'pwd1234', confirmed_at: Time.now
+    )
+  end
 
   before { user.save }
 
@@ -34,7 +42,9 @@ RSpec.describe User, type: :model do
       it "- can't be repeated (no duplicates)" do
         expect(user).to be_valid
         expect(duplicated_user).not_to be_valid
-        expect(attr_mod({ name: 'new name' }, duplicated_user)).to be_valid
+        duplicated_user.name = 'new name'
+        duplicated_user.email = 'newemail@me.com'
+        expect(duplicated_user).to be_valid
       end
     end
   end
@@ -99,7 +109,8 @@ RSpec.describe User, type: :model do
           expect { user.payments = '' }.to raise_error(NoMethodError)
           expect { user.payments = [5] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
           expect { user.payments = %w[a b c] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
-          diff_user = User.create(name: 'another user')
+          diff_user = User.create(name: 'another user',
+                                  email: 'other@me.com', password: 'pwd1234', confirmed_at: Time.now)
           diff_cat = diff_user.categories.new(name: 'another category', icon: icon_link)
           payment = user.payments.new(name: 'user payment', amount: 1, category: diff_cat)
           expect(payment).to_not be_valid

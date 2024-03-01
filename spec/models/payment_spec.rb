@@ -9,7 +9,11 @@ end
 
 RSpec.describe Payment, type: :model do
   let!(:icon_link) { 'https://ik.imagekit.io/dqd3uh1at/budget-app/design-guides/app_icon_circled.svg' }
-  let!(:payment_author) { User.create!(name: 'user name') }
+  let!(:payment_author) do
+    User.create!(
+      name: 'user name', email: 'email@me.com', password: 'pwd1234', confirmed_at: Time.now
+    )
+  end
   let!(:author_category) { payment_author.categories.create!(name: 'author category', icon: icon_link) }
   let!(:payment) { author_category.payments.new(name: 'payment name', amount: 1.59) }
 
@@ -24,14 +28,15 @@ RSpec.describe Payment, type: :model do
       expect(attr_mod({ amount: nil }, payment)).to_not be_valid
       expect(attr_mod({ amount: '' }, payment)).to_not be_valid
       expect(attr_mod({ amount: 'amount' }, payment)).to_not be_valid
-      payment.author = nil
-      expect { payment.validate }.to raise_error(NoMethodError)
+      payment.author = User.new(name: 'new user')
+      expect(payment).to_not be_valid
       expect { payment.author = 'author' }.to raise_error(ActiveRecord::AssociationTypeMismatch)
       expect { payment.category = 'category' }.to raise_error(ActiveRecord::AssociationTypeMismatch)
-      diff_author = User.create!(name: 'Diff Author')
+      diff_author = User.create!(name: 'Diff Author',
+                                 email: 'other@me.com', password: 'pwd1234', confirmed_at: Time.now)
       diff_category = diff_author.categories.create!(name: 'Diff Category', icon: icon_link)
       payment.category = diff_category
-      expect { payment.validate }.to raise_error(NoMethodError)
+      expect(payment).to_not be_valid
     end
   end
 
@@ -115,7 +120,8 @@ RSpec.describe Payment, type: :model do
       end
 
       it "=> 'Category' owner must be the payment's 'Author'" do
-        diff_author = User.create(name: 'diff author')
+        diff_author = User.create(name: 'diff author',
+                                  email: 'other@me.com', password: 'pwd1234', confirmed_at: Time.now)
         diff_category = diff_author.categories.create(name: 'diff category', icon: icon_link)
         payment.category = diff_category
         payment.validate

@@ -8,7 +8,11 @@ def attr_mod(mod, obj)
 end
 
 RSpec.describe Category, type: :model do
-  let!(:category_owner) { User.create!(name: 'user name') }
+  let!(:category_owner) do
+    User.create!(
+      name: 'user name', email: 'email@me.com', password: 'pwd1234', confirmed_at: Time.now
+    )
+  end
   let!(:icon_link) { 'https://ik.imagekit.io/dqd3uh1at/budget-app/design-guides/app_icon_circled.svg' }
   let!(:category) { described_class.new(name: 'category name', icon: icon_link, user: category_owner) }
 
@@ -23,7 +27,7 @@ RSpec.describe Category, type: :model do
       expect(attr_mod({ icon: nil }, category)).to_not be_valid
       expect(attr_mod({ icon: '' }, category)).to_not be_valid
       expect(attr_mod({ icon: '    ' }, category)).to_not be_valid
-      category.user = nil
+      category.user = User.new(name: 'new user')
       expect(category).to_not be_valid
       expect { category.user = ['user'] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
     end
@@ -42,7 +46,8 @@ RSpec.describe Category, type: :model do
         duplicated_category = described_class.new(name: 'category name', icon: icon_link, user: category_owner)
         expect(duplicated_category).to_not be_valid
         expect(attr_mod({ name: 'new name' }, duplicated_category)).to be_valid
-        diff_owner = User.create!(name: 'Another user')
+        diff_owner = User.create(name: 'another user',
+                                 email: 'other@me.com', password: 'pwd1234', confirmed_at: Time.now)
         diff_owner_category = described_class.create!(name: 'category name', icon: icon_link, user: diff_owner)
         expect(diff_owner_category).to be_valid
         diff_owner_duplicated_category = described_class.new(name: 'category name', icon: icon_link, user: diff_owner)
@@ -127,7 +132,8 @@ RSpec.describe Category, type: :model do
         expect { category.payments = '' }.to raise_error(NoMethodError)
         expect { category.payments = [5] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
         expect { category.payments = %w[a b c] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
-        diff_user = User.create(name: 'another user')
+        diff_user = User.create(name: 'another user',
+                                email: 'other@me.com', password: 'pwd1234', confirmed_at: Time.now)
         diff_cat = diff_user.categories.new(name: 'another category', icon: icon_link)
         payment.category = diff_cat
         expect(payment).to_not be_valid
