@@ -1,23 +1,23 @@
 require 'rails_helper'
 
-RSpec.describe 'Categories', type: :request do
-  describe 'GET /index' do
+RSpec.describe 'Users', type: :request do
+  describe 'GET /signup' do
     it 'returns http success' do
-      get '/categories'
+      get '/signup'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'GET /new' do
+  describe 'GET /login' do
     it 'returns http success' do
-      get '/categories/new'
+      get '/login'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'GET /create' do
+  describe 'GET /pass/new' do
     it 'returns http success' do
-      get '/categories/create'
+      get '/pass/new'
       expect(response).to have_http_status(:success)
     end
   end
