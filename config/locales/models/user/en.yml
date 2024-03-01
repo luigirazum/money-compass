@@ -33,7 +33,10 @@ en:
       user: User
     attributes:
       user:
-        name: "User Name"
+        name: "Full Name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Confirm"
     errors:
       models:
         user:
