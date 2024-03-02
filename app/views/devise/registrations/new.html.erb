@@ -1,31 +1,21 @@
-<%= render_content_for %>
-
-<h2>Sign up</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render 'nav_header', locals: { f: f }, class: 'lnk lnk--frm' %>
+  <%= render 'flash_msgs' %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'FirstName LastName' %>
-  </div>
+    <div class="container">
+      <div class="field row">
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'FirstName LastName', class: 'input grow' %>
+      </div>
+      <div class="field row">
+        <%= f.email_field :email, autocomplete: "email", placeholder: 'your-email@address.com', class: 'input grow' %>
+      </div>
+      <div class="field row">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters minimum", class: 'input grow' %>
+      </div>
+      <div class="field row">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Type your password again', class: 'input grow' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email", placeholder: 'your-email@address.com' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters minimum" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Type your password again' %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
 <% end %>
