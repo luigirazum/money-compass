@@ -1,0 +1,8 @@
+<div class="category-card row <%= payments_mod[:align] if payments_mod && payments_mod[:align] %>">
+  <div class="category__icon <%= payments_mod[:icon] if payments_mod && payments_mod[:icon] %>">
+    <img src=<%= category.icon %> alt=<%= category.name %>>
+  </div>
+  <div class="category__description grow <%= payments_mod[:description] if payments_mod && payments_mod[:description] %>">
+    <%= yield %>
+  </div>
+</div>
