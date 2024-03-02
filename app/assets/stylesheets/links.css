@@ -45,6 +45,6 @@
   color: var(--clr-text--dark);
 }
 
-.lnk--sbm:hover {
+.lnk--sbm:active {
   color: var(--clr-text--medium);
 }
