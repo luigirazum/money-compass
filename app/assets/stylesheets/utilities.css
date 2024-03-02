@@ -13,7 +13,7 @@
   padding-inline: 1em;
 }
 
-.full { height: 100dvh; }
+.full { height: 100vh; }
 .grid { display: grid; }
 .row { display: flex; }
 .cols { flex-direction: column; }

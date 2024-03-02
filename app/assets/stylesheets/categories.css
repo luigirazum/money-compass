@@ -13,6 +13,7 @@
 
 .category--link:hover .category-card {
   color: var(--clr-text--dark);
+
   /* background-color: var(--clr-text--light); */
   border-color: var(--clr-text--medium);
   box-shadow: 1px 1px 1px var(--clr-text--medium);
