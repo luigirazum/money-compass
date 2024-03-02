@@ -1,0 +1,7 @@
+<div class="payment-card">
+  <p class="payment__name row between base">
+    <%= payment.name %>
+    <span class="payment__amount"><%= number_to_currency(payment.amount, precision: 2) %></span>
+  </p>
+  <p class="payment__date"><%= payment.created_at.to_date.to_fs(:rfc822) %></p>
+</div>
