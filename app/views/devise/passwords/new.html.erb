@@ -1,16 +1,13 @@
-<%= render_content_for %>
-
-<h2>Forgot your password?</h2>
-
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render 'nav_header', locals: { f: f }, class: 'lnk lnk--sbm' %>
+  <%= render 'flash_msgs' %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'your-registered@email.com' %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  <div class="content">
+    <div class="contain bg-white">
+      <div class="field row">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'your-registered@email.com', class: 'input grow' %>
+      </div>
+    </div>
   </div>
 <% end %>

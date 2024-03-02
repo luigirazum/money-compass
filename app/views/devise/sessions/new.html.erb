@@ -1,19 +1,18 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <%= render 'nav_header', locals: { f: f }, class: 'lnk lnk--frm' %>
+  <%= render 'nav_header', locals: { f: f }, class: 'lnk lnk--sbm' %>
   <%= render 'flash_msgs' %>
   <div class="content">
     <div class="contain bg-white">
   
-    <div class="field row">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'your-registered@email.com', class: 'input grow' %>
-    </div>
+      <div class="field row">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'your-registered@email.com', class: 'input grow' %>
+      </div>
 
-    <div class="field row">
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Type your password', class: 'input grow' %>
+      <div class="field row">
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Type your password', class: 'input grow' %>
+      </div>
     </div>
-
   </div>
-</div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="center"><%= render "devise/shared/links" %></div>
