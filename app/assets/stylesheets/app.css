@@ -3,6 +3,8 @@
   padding-block: 0.5em;
   color: var(--clr-white);
   background-color: var(--clr-primary);
+  top: 0;
+  z-index: 9;
 }
 
 .header__name {
@@ -20,4 +22,5 @@
   color: var(--clr-white);
   padding-inline: 1em;
   padding-block: 1em;
+  z-index: 9;
 }

@@ -6,6 +6,8 @@ body {
   background-color: var(--clr-white--bg);
   color: var(--clr-text);
   min-width: 320px;
+  padding-block-end: 7rem;
+  scroll-padding-block: 5rem;
 }
 
 h1,

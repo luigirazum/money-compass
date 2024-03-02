@@ -4,6 +4,7 @@
   background-color: var(--clr-white);
   padding: 0.75em;
   box-shadow: 1px 1px 1px var(--clr-text--light);
+  top: 3.25rem;
 }
 
 .category--link:hover,

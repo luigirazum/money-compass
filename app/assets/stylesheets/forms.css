@@ -22,7 +22,7 @@
   font-family: var(--ff-text);
   font-size: var(--fs-text);
   outline: unset;
-  margin-block: 1em;
+  margin-block: 0.75em;
 }
 
 .input::placeholder {
@@ -37,6 +37,7 @@
   padding-block: 0.5em;
   border-color: var(--clr-text--light);
   margin-inline-start: 0.5em;
+  margin-block: 0.75em;
 }
 
 .option {
