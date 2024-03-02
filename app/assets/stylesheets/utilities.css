@@ -1,5 +1,4 @@
 .container {
-  width: 400px;
   max-width: var(--container-mxw, 95%);
   margin-inline: auto;
 }

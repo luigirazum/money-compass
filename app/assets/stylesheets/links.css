@@ -35,3 +35,16 @@
 .lnk--nav:active {
   color: var(--clr-text--dark);
 }
+
+.lnk--sbm {
+  color: var(--clr-white);
+  text-transform: none;
+}
+
+.lnk--sbm:hover {
+  color: var(--clr-text--dark);
+}
+
+.lnk--sbm:hover {
+  color: var(--clr-text--medium);
+}

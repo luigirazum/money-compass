@@ -36,6 +36,7 @@
 }
 
 .category__description {
+  text-align: center;
   padding-inline-start: 1em;
   padding-block-end: 0.5em;
   align-self: flex-end;
