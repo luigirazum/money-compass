@@ -1,2 +1,20 @@
-<h1>Payments#index</h1>
-<p>Find me in app/views/payments/index.html.erb</p>
+<%= render_content_for(nil) %>
+
+<main class="main">
+    <%= render(layout: 'category_card', locals: { category: @category, payments_mod: { icon: 'category__icon--small', align: 'mid', description: 'category__description--payments' } }) do %>
+      <div class="row baseline between">
+        <h6 class="category__name mbe-0"><%= @category.name %></h6>
+        <p class="category__total">
+          <strong class="category__amount"><%= number_to_currency(@category.total_amount, precision: 2) %></strong>
+        </p>
+      </div>
+    <% end %>
+  <div class="content">
+    <ul class="container">
+      <%= render_payments_by_category %>
+    </ul>
+  </div>
+<main>
+<footer class="footer fixed">
+  <%= link_to 'Add Payment', new_category_payment_path(@category), class: 'btn btn--secondary' %>
+</footer>
