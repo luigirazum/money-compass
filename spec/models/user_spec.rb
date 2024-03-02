@@ -11,12 +11,12 @@ RSpec.describe User, type: :model do
   let!(:icon_link) { 'https://ik.imagekit.io/dqd3uh1at/budget-app/design-guides/app_icon_circled.svg' }
   let!(:user) do
     described_class.new(
-      name: 'user name', email: 'email@me.com', password: 'pwd1234', confirmed_at: Time.now
+      name: 'user name', email: 'email@me.com', password: 'pwd1234'
     )
   end
   let!(:duplicated_user) do
     described_class.new(
-      name: 'user name', email: 'email@me.com', password: 'pwd1234', confirmed_at: Time.now
+      name: 'user name', email: 'email@me.com', password: 'pwd1234'
     )
   end
 
@@ -110,7 +110,7 @@ RSpec.describe User, type: :model do
           expect { user.payments = [5] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
           expect { user.payments = %w[a b c] }.to raise_error(ActiveRecord::AssociationTypeMismatch)
           diff_user = User.create(name: 'another user',
-                                  email: 'other@me.com', password: 'pwd1234', confirmed_at: Time.now)
+                                  email: 'other@me.com', password: 'pwd1234')
           diff_cat = diff_user.categories.new(name: 'another category', icon: icon_link)
           payment = user.payments.new(name: 'user payment', amount: 1, category: diff_cat)
           expect(payment).to_not be_valid

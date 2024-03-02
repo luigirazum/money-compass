@@ -11,7 +11,7 @@ RSpec.describe Payment, type: :model do
   let!(:icon_link) { 'https://ik.imagekit.io/dqd3uh1at/budget-app/design-guides/app_icon_circled.svg' }
   let!(:payment_author) do
     User.create!(
-      name: 'user name', email: 'email@me.com', password: 'pwd1234', confirmed_at: Time.now
+      name: 'user name', email: 'email@me.com', password: 'pwd1234'
     )
   end
   let!(:author_category) { payment_author.categories.create!(name: 'author category', icon: icon_link) }
@@ -33,7 +33,7 @@ RSpec.describe Payment, type: :model do
       expect { payment.author = 'author' }.to raise_error(ActiveRecord::AssociationTypeMismatch)
       expect { payment.category = 'category' }.to raise_error(ActiveRecord::AssociationTypeMismatch)
       diff_author = User.create!(name: 'Diff Author',
-                                 email: 'other@me.com', password: 'pwd1234', confirmed_at: Time.now)
+                                 email: 'other@me.com', password: 'pwd1234')
       diff_category = diff_author.categories.create!(name: 'Diff Category', icon: icon_link)
       payment.category = diff_category
       expect(payment).to_not be_valid
@@ -121,7 +121,7 @@ RSpec.describe Payment, type: :model do
 
       it "=> 'Category' owner must be the payment's 'Author'" do
         diff_author = User.create(name: 'diff author',
-                                  email: 'other@me.com', password: 'pwd1234', confirmed_at: Time.now)
+                                  email: 'other@me.com', password: 'pwd1234')
         diff_category = diff_author.categories.create(name: 'diff category', icon: icon_link)
         payment.category = diff_category
         payment.validate
