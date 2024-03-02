@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'payments/index'
+  get 'payments/new'
+  get 'payments/create'
   devise_for :users, path: '',
                      path_names: {
                       sign_in: 'login',
@@ -14,7 +17,9 @@ Rails.application.routes.draw do
 
   # to access categories(home) the user needs to login first (authenticate)
   authenticate :user do
-    resources :categories, only: %i[index new create], constraints: { id: /[1-9]+[0-9]*/ }
+    resources :categories, only: %i[index new create], constraints: { id: /[1-9]+[0-9]*/ } do
+      resources :payments, only: %i[index new create]
+    end
   end
 
   # splash route
