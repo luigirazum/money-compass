@@ -16,6 +16,11 @@ class Category < ApplicationRecord
   validates_presence_of :user_id
   validates_associated :payments
 
+  # custom methods
+  def total_amount
+    payments.sum(&:amount)
+  end
+
   private
 
   def initialize_category(payment)
