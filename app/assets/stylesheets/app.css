@@ -1,0 +1,23 @@
+/* header */
+.header {
+  padding-block: 0.5em;
+  color: var(--clr-white);
+  background-color: var(--clr-primary);
+}
+
+.header__name {
+  font-family: var(--ff-text);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* footer */
+.footer {
+  width: 100%;
+  bottom: 0;
+  background-color: var(--clr-secondary);
+  color: var(--clr-white);
+  padding-inline: 1em;
+  padding-block: 1em;
+}

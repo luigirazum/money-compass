@@ -23,3 +23,15 @@
 .lnk--txt:active {
   color: var(--clr-text--dark);
 }
+
+.lnk--nav {
+  text-transform: capitalize;
+}
+
+.lnk--nav:hover {
+  color: var(--clr-text--medium);
+}
+
+.lnk--nav:active {
+  color: var(--clr-text--dark);
+}

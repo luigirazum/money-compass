@@ -1,0 +1,30 @@
+.field {
+  background-color: var(--clr-white);
+  padding-block-end: 0.25em;
+}
+
+.field + .field {
+  border-block-start: 1px solid var(--clr-text--light);
+  padding-block-start: 0.5em;
+}
+
+.label {
+  color: var(--clr-text--light);
+  font-size: var(--fs-text);
+  padding-block-start: 0.5em;
+}
+
+.input {
+  border: unset;
+  padding-block: 0.5em;
+  padding-inline: 0.75em;
+  color: var(--clr-text--dark);
+  font-family: var(--ff-text);
+  font-size: var(--fs-text);
+  outline: unset;
+}
+
+.input::placeholder {
+  font-size: var(--fs-text);
+  color: var(--clr-text--light);
+}

@@ -1,0 +1,58 @@
+.nav {
+  padding-block: 1em;
+  padding-inline-start: 0.75em;
+  visibility: hidden;
+  height: 0;
+  position: absolute;
+  color: var(--clr-white);
+  background-color: var(--clr-primary);
+}
+
+.nav--visible {
+  visibility: visible;
+  height: auto;
+  position: absolute;
+  left: 0;
+  right: 40vw;
+  z-index: 900;
+}
+
+.nav-toggle {
+  cursor: pointer;
+  border: none;
+  color: var(--clr-white);
+  background-color: var(--clr-clear);
+  padding: 0;
+  border-radius: 50%;
+  transition: background-color 250ms ease;
+
+  /* position: absolute; */
+  left: 2.5em;
+}
+
+.nav-toggle:hover {
+  background-color: var(--clr-text--light);
+}
+
+.nav-toggle:active {
+  background-color: var(--clr-text--dark);
+}
+
+.nav__list {
+  padding-block: 1.5em 0.5em;
+}
+
+.nav__item + .nav__item {
+  margin-block-start: 1.5rem;
+}
+
+.nav__option {
+  display: block;
+  border-bottom: 2px solid var(--clr-white-075);
+  padding-block-start: 0.35em;
+  padding-block-end: 0.75em;
+}
+
+svg + span {
+  margin-inline-start: 0.75em;
+}
