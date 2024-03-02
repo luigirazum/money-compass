@@ -18,6 +18,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
   - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
@@ -104,16 +105,13 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LIVE DEMO
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
-
-- [Live Demo Link](<replace-with-your-deployment-URL>)
+- [MoneyCompass Live Demo](https://lit-forest-67612-7ce27a105121.herokuapp.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
--->
+
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
