@@ -45,13 +45,14 @@ module ApplicationHelper
                     locals: { icon_name: 'close' },
                     data: { 'categories-target': 'close' }, class: 'icon icon--hidden')
 
-      return tag.button(type: 'button', class: 'nav-toggle',
-                        data: { action: 'click->categories#toggleMenu' }, aria: { label: 'open navigation' }) do
+      return tag.button(name: 'navigation', type: 'button', class: 'nav-toggle',
+                        aria: { label: 'open navigation' },
+                        data: { action: 'click->categories#toggleMenu' }) do
                out.html_safe
              end
     end
 
-    link_to(back_path_by_controller, class: 'btn btn--nav') do
+    link_to(back_path_by_controller, name: 'back', class: 'btn btn--nav') do
       render('icon', locals: { icon_name: 'back-arrow' }, class: 'icon')
     end
   end
