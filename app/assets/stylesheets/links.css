@@ -1,0 +1,25 @@
+.lnk {
+  display: inline-block;
+  font-weight: var(--fw-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.lnk--txt {
+  padding-block: 1em;
+  color: var(--clr-text--medium);
+}
+
+.lnk--txt:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+.lnk--txt:hover {
+  color: var(--clr-primary--dark);
+}
+
+.lnk--txt:active {
+  color: var(--clr-text--dark);
+}

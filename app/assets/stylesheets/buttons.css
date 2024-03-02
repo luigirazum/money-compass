@@ -1,0 +1,30 @@
+.btn {
+  cursor: pointer;
+  font-weight: var(--fw-text);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  padding-block: 1em;
+  padding-inline: 1.5em;
+  background-color: unset;
+  display: block;
+}
+
+.btn--primary {
+  color: var(--clr-white);
+  background-color: var(--clr-primary);
+}
+
+.btn--primary:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+.btn--primary:hover {
+  background-color: var(--clr-text--light);
+}
+
+.btn--primary:active {
+  background-color: var(--clr-text--semi);
+}
