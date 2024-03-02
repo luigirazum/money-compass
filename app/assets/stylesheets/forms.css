@@ -28,3 +28,17 @@
   font-size: var(--fs-text);
   color: var(--clr-text--light);
 }
+
+.select {
+  font-size: var(--fs-text);
+  color: var(--clr-text--light);
+  padding-inline: 0.25em;
+  padding-block: 0.5em;
+  border-color: var(--clr-text--light);
+  margin-inline-start: 0.5em;
+}
+
+.option {
+  color: var(--clr-text--light);
+  font-size: var(--fs-text);
+}
