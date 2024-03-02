@@ -20,7 +20,7 @@ def cat_payments(cat_count)
 end
 
 %w[Kevin Marco Kyle].each do |uname|
-  User.create!(name: uname, email: "#{uname}@me.com", password: 'pwd1234', confirmed_at: Time.now())
+  User.create!(name: uname, email: "#{uname}@me.com", password: 'pwd1234')
 end
 
 User.all.each do |u|
