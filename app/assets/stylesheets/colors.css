@@ -1,0 +1,59 @@
+:root {
+  /* -----------------------------------------
+    primary: #3778c2 >> hsl(212, 56%, 49%)
+    primary--dark: #1f5794 >> hsl(211, 65%, 35%)
+    ------------------------------------------ */
+  --dg-primary: 212, 56%, 49%;
+  --dg-primary--dark: 211, 65%, 35%;
+
+  /* -----------------------------------------
+    secondary: #5fb523 >> hsl(95, 68%, 42%)
+    ------------------------------------------ */
+  --dg-secondary: 95, 68%, 42%;
+
+  /* -----------------------------------------
+    text--dark: #434b54 >> hsl(212, 11%, 30%)
+    text--semi: #545c67 >> hsl(215, 10%, 37%)
+    text--medium: #86898e >> hsl(218, 3%, 54%)
+    text--light: #989da3 >> hsl(213, 6%, 62%)
+  ------------------------------------------ */
+  --dg-text--dark: 212, 11%, 20%;
+  --dg-text--semi: 215, 10%, 37%;
+  --dg-text--medium: 218, 3%, 54%;
+  --dg-text--light: 213, 6%, 62%;
+
+  /* -----------------------------------------
+  white: #fff >> hsl(0, 0%, 100%)
+  ------------------------------------------ */
+  --dg-wht: 0, 0%, 100%;
+
+  /* -----------------------------------------
+    white-bg: #f0f2f1 >> hsl(150, 7%, 95%)
+    ------------------------------------------ */
+  --dg-wht--bg: 150, 7%, 95%;
+
+  /* -----------------------------------------
+    base hsl colors
+    ------------------------------------------ */
+  --hsl-primary: hsl(var(--dg-primary));
+  --hsl-primary--dark: hsl(var(--dg-primary--dark));
+  --hsl-secondary: hsl(var(--dg-secondary));
+  --hsl-text--dark: hsl(var(--dg-text--dark));
+  --hsl-text--semi: hsl(var(--dg-text--semi));
+  --hsl-text--medium: hsl(var(--dg-text--medium));
+  --hsl-text--light: hsl(var(--dg-text--light));
+  --hsl-white: hsl(var(--dg-wht));
+  --hsl-white--bg: hsl(var(--dg-wht--bg));
+
+  /* color palette */
+  --clr-clear: transparent;
+  --clr-primary: var(--hsl-primary);
+  --clr-primary--dark: var(--hsl-primary--dark);
+  --clr-secondary: var(--hsl-secondary);
+  --clr-text--dark: var(--hsl-text--dark);
+  --clr-text--semi: var(--hsl-text--semi);
+  --clr-text--medium: var(--hsl-text--medium);
+  --clr-text--light: var(--hsl-text--light);
+  --clr-white: var(--hsl-white);
+  --clr-white--bg: var(--hsl-white--bg);
+}

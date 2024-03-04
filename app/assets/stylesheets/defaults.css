@@ -1,0 +1,20 @@
+body {
+  font-family: var(--ff-app);
+  font-weight: var(--fw-text);
+  font-size: var(--fs-text);
+  line-height: 1;
+  background-color: var(--clr-white--bg);
+  color: var(--clr-text);
+  min-width: 320px;
+  padding-block-end: 7rem;
+  scroll-padding-block: 5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--fw-headlines);
+}

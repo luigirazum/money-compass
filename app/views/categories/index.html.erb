@@ -1,0 +1,13 @@
+<%= render_content_for(nil) %>
+
+<main class="main">
+  <div class="container">
+    <ul class="content">
+      <%= render_all_categories %>
+    </ul>
+  </div>
+</main>
+<footer class="footer fixed">
+  <%= link_to 'Add Category', new_category_path, class: 'btn btn--secondary' %>
+</footer>
+

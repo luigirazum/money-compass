@@ -1,0 +1,65 @@
+.lnk {
+  display: inline-block;
+  font-weight: var(--fw-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.lnk--txt {
+  padding-block: 1em;
+  color: var(--clr-text--medium);
+}
+
+.lnk--txt:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+.lnk--txt:hover {
+  color: var(--clr-primary--dark);
+}
+
+.lnk--txt:active {
+  color: var(--clr-text--dark);
+}
+
+.lnk--nav {
+  text-transform: capitalize;
+}
+
+.lnk--nav:hover {
+  color: var(--clr-text--medium);
+}
+
+.lnk--nav:active {
+  color: var(--clr-text--dark);
+}
+
+.lnk--sbm {
+  letter-spacing: 0.5px;
+  color: var(--clr-white);
+  text-transform: none;
+}
+
+.lnk--sbm:hover {
+  color: var(--clr-text--dark);
+}
+
+.lnk--sbm:active {
+  color: var(--clr-text--medium);
+}
+
+.lnk--frm {
+  letter-spacing: 0.5px;
+  text-transform: none;
+  color: var(--clr-text--light);
+}
+
+.lnk--frm:hover {
+  color: var(--clr-primary--dark);
+}
+
+.lnk--frm:active {
+  color: var(--clr-text--dark);
+}

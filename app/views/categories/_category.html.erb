@@ -1,0 +1,7 @@
+<%= render(layout: 'category_card', locals: { category: category, payments_mod: nil }) do %>
+  <h6 class="category__name"><%= category.name %></h6>
+  <p class="category__total">
+    Total amount:
+    <strong class="category__amount"><%= number_to_currency(category.total_amount, precision: 2) %></strong>
+  </p>
+<% end%>

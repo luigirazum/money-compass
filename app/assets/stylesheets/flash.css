@@ -1,0 +1,19 @@
+.flash {
+  display: none;
+  padding: 0.5em;
+  color: var(--clr-white);
+}
+
+.flash--notice,
+.flash--alert {
+  display: block;
+}
+
+.flash--notice {
+  background-color: var(--clr-secondary);
+}
+
+.flash--alert {
+  background-color: var(--clr-text--light);
+  color: red;
+}

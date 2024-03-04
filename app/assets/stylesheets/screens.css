@@ -1,0 +1,9 @@
+.splash__title {
+  font-family: var(--ff-splash);
+  font-size: var(--fs-900);
+}
+
+.splash__title,
+.splash__actions {
+  margin-block-start: auto;
+}

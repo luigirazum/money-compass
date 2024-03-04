@@ -1,0 +1,18 @@
+<%= render_content_for(nil) %>
+<%= form_with model: @category, class: 'form' do |f| %>
+  <main>
+    <div class="content">
+      <div class="contain bg-white">
+        <div class="field row base">
+          <%= f.text_field :name, autofocus: true, placeholder: 'Type the name for the category', class: 'input grow' %>
+        </div>
+        <div class="field row base">
+          <%= f.text_field :icon, placeholder: 'Type the link of the icon https://www...', class: 'input grow' %>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="footer grid fixed">
+    <%= f.submit "Save", class: 'btn btn--secondary' %>
+  </div>
+<% end %>

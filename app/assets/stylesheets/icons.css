@@ -1,0 +1,21 @@
+.icon {
+  --icon-size: 2.25rem;
+
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: inherit;
+  border-radius: 50%;
+  padding: 0.25rem;
+  line-height: 0;
+}
+
+.icon--nav {
+  border: 2px solid currentColor;
+}
+
+.icon--hidden {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  padding: 0;
+}

@@ -1,0 +1,25 @@
+<%= render_content_for(nil) %>
+
+<%= form_with model: [@category, @payment], class: 'form' do |f| %>
+  <main>
+    <div class="content">
+      <div class="contain bg-white">
+        <div class="field row base">
+          <%= f.text_field :name, autofocus: true, placeholder: 'Type name for the payment', class: 'input grow' %>
+        </div>
+
+        <div class="field row base">
+          <%= f.text_field :amount, value: nil, placeholder: 'Type the amount', class: 'input grow' %>
+        </div>
+
+        <div class="field row base">
+          <%= f.label :category, text: 'Select a category', class: 'label' %><br>
+          <%= f.select :category, current_user.categories.collect { |c| [c.name, c.id, { class: 'option' }]}, {}, selected: @category.id, class: 'select grow' %>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="footer grid fixed">
+    <%= f.submit "Save", class: 'btn btn--secondary' %>
+  </div>
+<% end %>

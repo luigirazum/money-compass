@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('Proxima-Nova-light.ttf'), url('Proxima-Nova-bold.ttf');
+}
+
+@font-face {
+  font-family: 'Fertigo Pro Script';
+  src: url('Fertigo-Pro-Script-regular.otf');
+}
+
+:root {
+  /* font-families */
+  --ff-splash: 'Fertigo Pro Script';
+  --ff-app: 'Proxima Nova';
+
+  /* font-weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-bold: 700;
+  --fw-splash: var(--fw-bold);
+  --fw-headlines: var(--fw-bold);
+  --fw-text: var(--fw-light);
+
+  /* sizes */
+  --fs-base: 1rem;
+  --fs-text: var(--fs-base);
+  --fs-900: calc(var(--fs-text) * 2.5);
+}

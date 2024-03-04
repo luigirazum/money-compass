@@ -1,0 +1,32 @@
+<% local_assigns => { locals: { f: }, **options } %>
+
+<header data-controller="categories" class="header sticky">
+  <div class="container">
+    <div class="header__title row mid">
+      <%= nav_button_by_controller %>
+      <h2 class="header__name grow center"><%= screen_name_by_controller %></h2>
+      <%= f.submit(button_name_by_controller, **options) unless f.nil? %>
+    </div>
+    <nav data-categories-target="nav" class="nav">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <% if user_signed_in? %>
+            <p>Hi, <span class="header__name"><%= current_user.name %></span></p>
+          <% end %>
+        </li>
+        <li class="nav__item">
+          <%= link_to(root_path, class: "lnk lnk--nav row mid") do %>
+            <%= render('icon', locals: { icon_name: 'home' }, class: 'icon icon--nav') %>
+            <span class="nav__item--name">Home</span>
+          <% end %>
+        </li>
+        <li class="nav__item">
+          <%= link_to(destroy_user_session_path, data: { "turbo-method": :delete }, class: "lnk lnk--nav row mid") do %>
+            <%= render('icon', locals: { icon_name: 'logout' }, class: 'icon icon--nav') %>
+            <span class="nav__item--name">Logout</span>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
